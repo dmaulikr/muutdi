@@ -48,7 +48,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="button1Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k4L-PI-aXi"/>
+                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nXC-lr-uGb"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAk-u1-3nj" userLabel="Happy">
@@ -59,7 +59,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="button2Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4LP-DN-D0I"/>
+                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gL3-KW-Fpj"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -78,7 +78,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="button3Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wcO-28-5rE"/>
+                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="85L-Bc-aTV"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6i-e9-uxG" userLabel="Angry">
@@ -89,7 +89,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="button4Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XUH-hB-jNL"/>
+                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QI8-lN-Lxu"/>
                                                 </connections>
                                             </button>
                                         </subviews>

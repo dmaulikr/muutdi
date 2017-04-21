@@ -1,0 +1,6 @@
+framework module Pods_Just_Work {
+  umbrella header "Pods-Just Work-umbrella.h"
+
+  export *
+  module * { export * }
+}
