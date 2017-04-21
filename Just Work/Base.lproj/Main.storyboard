@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4iw-X9-vJF">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -9,7 +13,7 @@
         <!--Muutdi-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Just_Work" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Muutdi" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -25,13 +29,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="is it:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxO-qx-PM2">
-                                <rect key="frame" x="169" y="351" width="36.5" height="24"/>
+                                <rect key="frame" x="169" y="381.5" width="36.5" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="jhN-Kv-We9">
-                                <rect key="frame" x="36" y="435" width="303" height="115"/>
+                                <rect key="frame" x="36" y="465.5" width="303" height="115"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="arg-uh-t4k">
                                         <rect key="frame" x="0.0" y="0.0" width="303" height="50"/>
@@ -48,7 +52,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAk-u1-3nj" userLabel="Happy">
-                                                <rect key="frame" x="161" y="0.0" width="141.5" height="50"/>
+                                                <rect key="frame" x="161.5" y="0.0" width="141.5" height="50"/>
                                                 <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="Happy">
@@ -78,7 +82,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6i-e9-uxG" userLabel="Angry">
-                                                <rect key="frame" x="161" y="0.0" width="141.5" height="50"/>
+                                                <rect key="frame" x="161.5" y="0.0" width="141.5" height="50"/>
                                                 <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="Angry">
@@ -104,7 +108,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xxO-qx-PM2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="30" id="2hl-00-U3q"/>
+                            <constraint firstItem="xxO-qx-PM2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="60" id="2hl-00-U3q"/>
                             <constraint firstItem="kGl-4B-VNH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="7eK-ll-WUq"/>
                             <constraint firstItem="kGl-4B-VNH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7y8-PX-ODL"/>
                             <constraint firstItem="XAU-Eo-1d7" firstAttribute="top" secondItem="kGl-4B-VNH" secondAttribute="bottom" constant="140" id="JUS-Yc-RHv"/>
@@ -119,7 +123,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Muutdi" id="gKX-pN-OIb"/>
                     <connections>
-                        <outlet property="groupBtn34" destination="mcP-j5-B2P" id="Rdt-ra-DSq"/>
                         <outlet property="moodButton1" destination="mag-r4-XXZ" id="LKh-Ve-poZ"/>
                         <outlet property="moodButton2" destination="cAk-u1-3nj" id="Lw5-Jn-sZO"/>
                         <outlet property="moodButton3" destination="UmT-Xh-J4h" id="89p-ep-5bL"/>

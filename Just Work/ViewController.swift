@@ -25,7 +25,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     static let calmMood = [UIColor(rgb: 0x007991), UIColor(rgb: 0x78FFD6)]
     static let highMood = [UIColor(rgb: 0xF09819), UIColor(rgb: 0xFF512F)]
     
-    let detailedLowMood = ["Boredom", "Tiredness"]
+    let detailedLowMood = ["Boredom", "Tiredness", "Sadness", "Anxiety"]
     let detailedHighMood = ["Stress", "Happiness", "Sadness", "Anger"]
 
     @IBOutlet weak var moodButton1: UIButton!
@@ -33,13 +33,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var moodButton3: UIButton!
     @IBOutlet weak var moodButton4: UIButton!
     
-    @IBOutlet weak var groupBtn34: UIStackView!
-    
     @IBOutlet weak var rawMoodStatus: UILabel!
     
     var moodProgress: KDCircularProgress!
-    var moodPoint: Double = 70.0
-    var predictedMood = "Stress"
+    var moodPoint: Double = 65
+    var predictedMood = "Happiness"
     
     var locationManager = CLLocationManager()
     
@@ -50,12 +48,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         // Set the styling for the mood progress
         moodProgress = KDCircularProgress(frame: CGRect(x: 20, y: 80, width: 300, height: 300))
-        moodProgress.angle = moodPoint/100*360
         moodProgress.startAngle = -90
         moodProgress.progressThickness = 0.6
         moodProgress.trackThickness = 0.6
         moodProgress.clockwise = true
         moodProgress.glowAmount = 0
+        moodProgress.gradientRotateSpeed = 2
         
         if (moodPoint < 50) {
             setLowMood()
@@ -72,12 +70,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Register for local notification
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound,.badge], completionHandler: {didAllow, error in})
         
-        sendNotification()
+//        sendNotification()
         
         // Location request to send to server
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.requestLocation()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        moodProgress.animate(toAngle: moodPoint/100*360, duration: 2, relativeDuration: true, completion: nil)
     }
     
     func setHighMood() {
@@ -90,16 +92,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         moodButton4.setTitle(detailedHighMood[3], for: UIControlState.normal)
         
         if (predictedMood == "Stress") {
-            moodButton1.backgroundColor = UIColor.blue
+            moodButton1.backgroundColor = UIColor(rgb: 0x50C9C3)
             self.view.applyGradient(colours: stressBackground)
         } else if (predictedMood == "Happiness") {
-            moodButton2.backgroundColor = UIColor.blue
+            moodButton2.backgroundColor = UIColor(rgb: 0x50C9C3)
             self.view.applyGradient(colours: happyBackground)
         } else if (predictedMood == "Sadness") {
-            moodButton3.backgroundColor = UIColor.blue
+            moodButton3.backgroundColor = UIColor(rgb: 0x50C9C3)
             self.view.applyGradient(colours: sadBackground)
         } else {
-            moodButton4.backgroundColor = UIColor.blue
+            moodButton4.backgroundColor = UIColor(rgb: 0x50C9C3)
             self.view.applyGradient(colours: angryBackground)
         }
     }
@@ -109,29 +111,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         moodProgress.set(colors: UIColor(rgb: 0x16BFFD), UIColor(rgb: 0xCB3066))
         moodButton1.setTitle(detailedLowMood[0], for: UIControlState.normal)
         moodButton2.setTitle(detailedLowMood[1], for: UIControlState.normal)
-        groupBtn34.isHidden = true
+        moodButton3.setTitle(detailedLowMood[2], for: UIControlState.normal)
+        moodButton4.setTitle(detailedLowMood[3], for: UIControlState.normal)
         
         if (predictedMood == "Boredom") {
-            moodButton1.backgroundColor = UIColor.blue
+            moodButton1.backgroundColor = UIColor(rgb: 0x50C9C3)
             self.view.applyGradient(colours: boredBackground)
+        } else if (predictedMood == "Tiredness"){
+            moodButton2.backgroundColor = UIColor(rgb: 0x50C9C3)
+            self.view.applyGradient(colours: tiredBackground)
+        } else if (predictedMood == "Sadness") {
+            moodButton3.backgroundColor = UIColor(rgb: 0x50C9C3)
+            self.view.applyGradient(colours: tiredBackground)
         } else {
-            moodButton2.backgroundColor = UIColor.blue
+            moodButton4.backgroundColor = UIColor(rgb: 0x50C9C3)
             self.view.applyGradient(colours: tiredBackground)
         }
     }
     
     func sendNotification() {
         let content = UNMutableNotificationContent()
-        content.title = "Sample title"
-        content.subtitle = "Sample sumtitle"
-        content.body = "Sample body"
+        content.title = "You are feeling " + "sad"
+//        content.subtitle = "Sample sumtitle"
+        content.body = "Do you want to play some music?"
         content.badge = 1
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         
         let request = UNNotificationRequest(identifier: "Sample notification", content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
+    func isSpotifyInstalled() -> Bool {
+        return UIApplication.shared.canOpenURL(NSURL(string:"spotify:")! as URL)
     }
     
     // Boiler plate for the Delegate of CLLocationManager
@@ -144,20 +157,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func button1Pressed(_ sender: Any) {
-        if (moodPoint < 50) {
-            
+        if isSpotifyInstalled() {
+            UIApplication.shared.open(NSURL(string: "spotify:track:06TY7FCbeT7Lu39oZ0IEsN")! as URL, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.open(NSURL(string: "https://open.spotify.com/track/06TY7FCbeT7Lu39oZ0IEsN")! as URL, options: [:], completionHandler: nil)
         }
     }
 
     @IBAction func button2Pressed(_ sender: Any) {
-        
+        if isSpotifyInstalled() {
+            UIApplication.shared.open(NSURL(string: "spotify:track:06TY7FCbeT7Lu39oZ0IEsN")! as URL, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.open(NSURL(string: "https://open.spotify.com/track/06TY7FCbeT7Lu39oZ0IEsN")! as URL, options: [:], completionHandler: nil)
+        }
     }
     
     @IBAction func button3Pressed(_ sender: Any) {
-        
+        if isSpotifyInstalled() {
+            UIApplication.shared.open(NSURL(string: "spotify:track:06TY7FCbeT7Lu39oZ0IEsN")! as URL, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.open(NSURL(string: "https://open.spotify.com/track/06TY7FCbeT7Lu39oZ0IEsN")! as URL, options: [:], completionHandler: nil)
+        }
     }
 
     @IBAction func button4Pressed(_ sender: Any) {
-        
+        if isSpotifyInstalled() {
+            UIApplication.shared.open(NSURL(string: "spotify:track:06TY7FCbeT7Lu39oZ0IEsN")! as URL, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.open(NSURL(string: "https://open.spotify.com/track/06TY7FCbeT7Lu39oZ0IEsN")! as URL, options: [:], completionHandler: nil)
+        }
     }
 }
